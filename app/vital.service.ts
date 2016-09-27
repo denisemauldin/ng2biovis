@@ -7,8 +7,6 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class VitalService {
 	constructor(public http: Http) {}
-	/* getVitals(): Promise<Vital[]> {
-		return Promise.resolve(VITALS); */
 	getVitals(): Promise<Vital[]> {
 		return this.http.get("http://localhost:3000/vitals.json")
 			.toPromise()
@@ -16,9 +14,6 @@ export class VitalService {
 			.catch(this.handleError);
 	}
 
-	/* getVital(id: number): Promise<Vital> {
-		return this.getVitals()
-			.then(vitals => vitals.find(vital => vital.id === id)); */
 	getVital(id: number): Promise<Vital> {
 		 return this.http.get("http://localhost:3000/vitals/"+ id + '.json')
 		 	.toPromise()
