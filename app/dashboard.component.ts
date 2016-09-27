@@ -18,10 +18,10 @@ export class DashboardComponent implements OnInit {
 		private vitalService: VitalService
 	) {}
 	ngOnInit(): void {
-		/* this.vitalService.getVitals()
-			.then(vitals => this.vitals = vitals.slice(1,5)); */
 		this.vitalService.getVitals()
-			.subscribe(response => this.vitals = response.json());
+			.then(vitals => this.vitals = vitals.slice(1,5));
+		/* this.vitalService.getVitals()
+			.subscribe(response => this.vitals = response.json()); */
 	}
 	gotoDetail(vital: Vital): void {
 		let link = ['/vital', vital.id];

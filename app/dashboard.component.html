@@ -1,3 +1,9 @@
 <h2>Dashboard</h2>
 What should go here?
-
+<div class="grid grid-pad">
+  <div *ngFor="let vital of vitals" (click)="gotoDetail(vital)" class="col-1-4">
+    <div class="module vital">
+      <h4>{{vital.name}}</h4>
+    </div>
+  </div>
+</div>
