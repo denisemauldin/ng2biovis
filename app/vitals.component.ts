@@ -19,8 +19,9 @@ export class VitalsComponent implements OnInit {
 	) {}
 
 	getVitals(): void {
-		this.vitalService.getVitals()
-			.then(vitals => this.vitals = vitals);
+		/* this.vitalService.getVitals()
+			.then(vitals => this.vitals = vitals); */
+		this.vitalService.getVitals().subscribe(response => this.vitals = response.json());
 	}
 	ngOnInit(): void {
 		this.getVitals();

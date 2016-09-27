@@ -13,17 +13,27 @@ import { VitalService } from './vital.service';
 })
 export class VitalDetailComponent implements OnInit {
 	vital: Vital;
+	sub: any;
+
 	constructor(
 		private vitalService: VitalService,
 		private route: ActivatedRoute,
 		private location: Location
 	) { }
 	ngOnInit(): void {
-		this.route.params.forEach((params: Params) => {
+		/*this.route.params.forEach((params: Params) => {
 			let id = +params['id'];
 			this.vitalService.getVital(id)
 				.then(vital => this.vital = vital);
+		}); */
+		this.sub = this.route.params.subscribe(params => {
+			let id = +params['id'];
+			this.vitalService.getVital(id)
+				.subscribe(response => this.vital = response.json());
 		});
+	}
+	ngOnDestroy() {
+		this.sub.unsubscribe();
 	}
 	goBack(): void {
 		this.location.back();
