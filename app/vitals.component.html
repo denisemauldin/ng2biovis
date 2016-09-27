@@ -1,0 +1,12 @@
+<h2>Vital Clouds</h2>
+  <ul class="vitals">
+     <li *ngFor="let vital of vitals"
+         [class.selected]="vital === selectedVital"
+         (click)="onSelect(vital)">
+         {{vital.name}}
+     </li>
+  </ul>
+  <div *ngIf="selectedVital">
+    <h2>{{selectedVital.name}}</h2>
+    <button (click)="gotoDetail()">View Details</button>
+  </div>
