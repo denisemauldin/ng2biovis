@@ -2,7 +2,7 @@
   <ul class="vitals">
      <li *ngFor="let vital of vitals"
          [class.selected]="vital === selectedVital"
-         (click)="onSelect(vital)">
+         (click)="gotoDetail(vital)">
          {{vital.name}}
      </li>
   </ul>

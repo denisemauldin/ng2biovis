@@ -1,6 +1,15 @@
 <div *ngIf="vital">
-  <h2>{{vital.name}} details!</h2>
+  <h2>{{vital.name}} cloud</h2>
   <div><label>name: </label>
     <input [(ngModel)]="vital.name" placeholder="name" />
+  </div>
+  <div><label>Blood Pressure:</label>
+    <input [(ngModel)]="vital.bloodpressure" placeholder="Blood Pressure" />
+  </div>
+  <div><label>Heart Rate:</label>
+    <input [(ngModel)]="vital.heartrate" placeholder="Heart Rate" />
+  </div>
+  <div><label>Temperature:</label>
+    <input [(ngModel)]="vital.temperature" placeholder="Temperature" />
   </div>
 </div>

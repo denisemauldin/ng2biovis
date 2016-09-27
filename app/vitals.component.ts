@@ -28,7 +28,8 @@ export class VitalsComponent implements OnInit {
 	onSelect(vital: Vital): void {
 		this.selectedVital = vital;
 	}
-	gotoDetail(): void {
-		this.router.navigate(['/vital/', this.selectedVital.id]);
+	gotoDetail(vital: Vital): void {
+		this.selectedVital = vital;
+		this.router.navigate(['/vital/', vital.id]);
 	}
 }
