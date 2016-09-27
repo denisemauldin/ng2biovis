@@ -29,4 +29,8 @@ export class VitalDetailComponent implements OnInit {
 	goBack(): void {
 		this.location.back();
 	}
+	save(): void {
+		this.vitalService.update(this.vital)
+			.then(() => this.goBack());
+	}
 }
