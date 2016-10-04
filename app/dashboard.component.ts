@@ -12,14 +12,23 @@ import { VitalService } from './vital.service';
 })
 export class DashboardComponent implements OnInit {
 	vitals: Vital[] = [];
-
+	data: [];
 	constructor(
 		private router: Router,
 		private vitalService: VitalService
 	) {}
 	ngOnInit(): void {
 		this.vitalService.getVitals()
-			.then(vitals => this.vitals = vitals.slice(1,5));
+			.then(vitals => this.vitals = vitals)
+			.then( vitals => {
+			console.log("after promise");
+			console.log(vitals);
+			vitals.forEach(s => {
+				console.log(s);
+				
+			});
+			}
+		)
 	}
 	gotoDetail(vital: Vital): void {
 		let link = ['/vital', vital.id];

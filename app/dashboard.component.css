@@ -58,7 +58,24 @@ h4 {
 	  min-width: 60px;
 	}
 }
+/* Styles from d3 blocks http://bl.ocks.org/weiglemc/6185069 */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
+.dot {
+  stroke: #000;
+}
+
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
 
 /*
 Copyright 2016 Google Inc. All Rights Reserved.

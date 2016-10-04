@@ -13,17 +13,18 @@ export class VitalService {
 	'Accept': 'application/json'
 	});
 	constructor(
-		public http: Http
+		private http: Http
 	) {}
+
 	getVitals(): Promise<Vital[]> {
-		return this.http.get("http://localhost:3000/vitals.json")
+		return this.http.get(this.vitalsUrl, { headers: this.headers } )
 			.toPromise()
 			.then(response => response.json() as Vital[])
 			.catch(this.handleError);
 	}
 
 	getVital(id: number): Promise<Vital> {
-		 return this.http.get("http://localhost:3000/vitals/"+ id + '.json')
+		 return this.http.get(this.vitalsUrl + '/' + id, { headers: this.headers })
 		 	.toPromise()
 			.then(response => response.json() as Vital)
 			.catch(this.handleError);
@@ -31,12 +32,27 @@ export class VitalService {
 
 	update(vital: Vital): Promise<Vital> {
   	const url = `${this.vitalsUrl}/${vital.id}`;
-		const putObj = { "vital": vital, "id": vital.id, "commit": "update vital" };
   	return this.http
-    .put(url, JSON.stringify(putObj), {headers: this.headers})
+    .put(url, vital, {headers: this.headers})
     .toPromise()
     .then(() => vital)
     .catch(this.handleError);
+	}
+
+	create(name: string): Promise<Vital> {
+	  return this.http
+	    .post(this.vitalsUrl, JSON.stringify({name: name}), {headers: this.headers})
+	    .toPromise()
+	    .then(res => res.json().data)
+	    .catch(this.handleError);
+	}
+
+	delete(id: number): Promise<void> {
+	  const url = `${this.vitalsUrl}/${id}`;
+	  return this.http.delete(url, {headers: this.headers})
+	    .toPromise()
+	    .then(() => null)
+	    .catch(this.handleError);
 	}
 
 	private handleError(error: any): Promise<any> {

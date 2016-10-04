@@ -1,12 +1,17 @@
+  <div>
+    <h3>New Vital</h3>
+    <label>Vital name:</label> <input #vitalName />
+    <button (click)="add(vitalName.value); vitalName.value=''">
+      Add
+    </button>
+  </div>
 <h2>Vital Clouds</h2>
   <ul class="vitals">
      <li *ngFor="let vital of vitals"
          [class.selected]="vital === selectedVital"
          (click)="gotoDetail(vital)">
          {{vital.name}}
-     </li>
+         <button class="delete"
+          (click)="delete(vital); $event.stopPropagation()">x</button>
+   </li>
   </ul>
-  <div *ngIf="selectedVital">
-    <h2>{{selectedVital.name}}</h2>
-    <button (click)="gotoDetail()">View Details</button>
-  </div>

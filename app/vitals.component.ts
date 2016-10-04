@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router }						 from '@angular/router';
 
 import { Vital } 				from './vital';
@@ -32,4 +32,27 @@ export class VitalsComponent implements OnInit {
 		this.selectedVital = vital;
 		this.router.navigate(['/vital/', vital.id]);
 	}
+
+	add(name: string): void {
+		console.log("name is "+name);
+  		if (typeof name != undefined) {
+			console.log("name should not exist");
+			return;
+		}
+		this.vitalService.create(name)
+    	.then(vital => {
+      	this.vitals.push(vital);
+      	this.selectedVital = null;
+    	});
+	}
+
+	delete(vital: Vital): void {
+	  this.vitalService
+	      .delete(vital.id)
+	      .then(() => {
+	        this.vitals = this.vitals.filter(v => v !== vital);
+	        if (this.selectedVital === vital) { this.selectedVital = null; }
+	      });
+	}
+
 }
